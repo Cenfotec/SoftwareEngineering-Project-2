@@ -1,0 +1,13 @@
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\ApiClient.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\ApiClient.pdb
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\ClientSide-EntitiesModel.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\Newtonsoft.Json.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\System.Net.Http.Formatting.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\ClientSide-EntitiesModel.pdb
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\Newtonsoft.Json.xml
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\bin\Debug\System.Net.Http.Formatting.xml
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\obj\Debug\ApiClient.csprojAssemblyReference.cache
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\obj\Debug\ApiClient.csproj.CoreCompileInputs.cache
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\obj\Debug\ApiClient.csproj.CopyComplete
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\obj\Debug\ApiClient.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ApiClient\obj\Debug\ApiClient.pdb

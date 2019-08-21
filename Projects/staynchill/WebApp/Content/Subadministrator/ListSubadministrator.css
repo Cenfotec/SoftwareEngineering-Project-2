@@ -1,0 +1,12 @@
+﻿#parentSubadministratorCards {
+    margin-top: 3rem;
+}
+
+.kt-widget.kt-widget--user-profile-2 .kt-widget__head .kt-widget__media .kt-widget__img {
+    width: 90px !important;
+    height: 90px !important;
+}
+
+.col-xl-3 {
+    display: inline-block !important;
+}

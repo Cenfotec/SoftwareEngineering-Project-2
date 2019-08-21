@@ -1,0 +1,42 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Dashboard";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/Product/vProductCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Registrar producto
+            </h3>
+        </div>
+    </div>
+
+    @* Form body *@
+    <form class="kt_form_1" id="registroProductos" method="POST">
+        <div class="kt-portlet__body">
+            @* Form controls *@
+            @Html.CtrlInput(id: "txtCode", type: "text", label: "Code *", columnDataName: "Code")
+            @Html.CtrlInput(id: "txtEmail", type: "email", label: "Email *", placeHolder: "Ingrese su correo electrónico", columnDataName: "Name")
+            @Html.CtrlInput(id: "txtDescription", type: "text", label: "Description *", columnDataName: "Description")
+            @Html.CtrlInputDatePicker(id: "dateArrivalDate", label: "Arrival date *", placeHolder: "Arrival date", columnDataName: "ArrivalDate")
+            @Html.CtrlInput(id: "txtState", type: "text", label: "State *", columnDataName: "State")
+        </div>
+
+        @* Form footer *@
+        <div class="kt-portlet__foot">
+
+            @Html.CtrlButton(viewName: "vProductIndex", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "btn-primary", type: "submit")
+            @Html.CtrlButton(viewName: "vProductIndex", id: "btnDelete", label: "Eliminar", onClickFunction: "Delete", buttonType: "btn-danger", type: "button")
+
+        </div>
+    </form>
+</div>

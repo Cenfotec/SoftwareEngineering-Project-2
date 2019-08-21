@@ -1,0 +1,29 @@
+﻿<script>
+    $(document).ready(function () {
+        var table = $('#-#Id-').DataTable();
+        $('#-#Id- tbody').on('click', 'tr', function () {
+            var data = table.row(this).data();
+            localStorage.setItem('-#Id-_selected', JSON.stringify(data));
+            var view = new -#ViewName-();
+            if (view != undefined) {
+                view.-#FunctionName-(data);
+            }
+        });
+    });
+</script>
+
+
+    <!--<div class="card-header">-#Title-</div>-->
+    <div class="card-body">
+        <table id="-#Id-" class="table table-striped- table-bordered table-hover table-checkable" cellspacing="0" width="100%"
+               ColumnsDataName="-#ColumnsDataName-" DataId="-#DataId-">
+            <thead>
+                <tr>
+                    -#ColumnHeaders-
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+<!--Bootstrap-->

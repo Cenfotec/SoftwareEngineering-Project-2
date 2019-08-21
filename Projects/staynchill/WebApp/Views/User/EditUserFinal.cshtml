@@ -1,0 +1,110 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Información";
+}
+
+@{
+    Layout = "~/Views/Shared/_BlankPage.cshtml";
+}
+
+<script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/Views/User/servicio_imagen.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/User/vUserEditUserFinal.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+<script src="https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js" type="text/javascript"></script>
+
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Modifica tu información
+            </h3>
+        </div>
+    </div>
+
+    @* Form body *@
+    <form class="kt_form_1" id="registrarAdminPlataforma" method="POST">
+        <meta charset="utf-8" />
+        <div class="kt-portlet__body">
+            @* Form controls *@
+            <div class="kt-heading kt-heading--md">Información General</div>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cédula", columnDataName: "Cedula")
+
+                </div>
+
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtPrimerNombre", type: "text", label: "Primer nombre", columnDataName: "Nombre")
+
+                </div>
+
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtSegundoNombre", type: "text", label: "Segundo nombre", placeHolder: "Opcional", columnDataName: "SegNombre")
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtPrimerApellido", type: "text", label: "Primer apellido", columnDataName: "Apellido")
+
+                </div>
+
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtSegundoApellido", type: "text", label: "Segundo apellido", columnDataName: "SegApellido")
+
+                </div>
+
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Teléfono", columnDataName: "Telefono")
+                </div>
+            </div>
+
+            <div class="kt-heading kt-heading--md">Ubicación</div>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlDropDown(id: "txtProvincia", pClass: "form-control kt-selectpicker", selectId: "inputProvincia", optionId: "optionProvincias", columnDataName: "vProvincia", label: "Provincia")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlDropDown(id: "txtCanton", pClass: "form-control kt-selectpicker", selectId: "inputCanton", optionId: "optionCantones", columnDataName: "vCanton", label: "Cantón")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlDropDown(id: "txtDistrito", pClass: "form-control kt-selectpicker", selectId: "inputDistrito", optionId: "", columnDataName: "vDistrito", label: "Distrito")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtDireccion", type: "text", label: "Dirección", columnDataName: "Direccion")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-log-4">
+                    @Html.CtrlInput(id: "txtHiddenProvincia", type: "hidden", label: "", columnDataName: "Provincia")
+                </div>
+                <div class="col-log-4">
+                    @Html.CtrlInput(id: "txtHiddenCanton", type: "hidden", label: "", columnDataName: "Canton")
+                </div>
+                <div class="col-log-4">
+                    @Html.CtrlInput(id: "txtHiddenDistrito", type: "hidden", label: "", columnDataName: "Distrito")
+                </div>
+            </div>
+
+            <div>
+                <figure class="image_holder">
+                    <img src="" alt="Seleccionar imagen" id="image_preview">
+                </figure>
+                <button type="button" id="btnSeleccionarImagen" class="btn btn-secondary btn-hover-brand">Actualizar foto de perfil</button>
+            </div>
+        </div>
+
+        @* Form footer *@
+        <div class="kt-portlet__foot">
+            @Html.CtrlButton(viewName: "vUserEditUserFinal", id: "btnEdit", label: "Actualizar", onClickFunction: "", buttonType: "btn-primary", type: "submit")
+        </div>
+    </form>
+</div>
+
+<script src="~/Scripts/Views/User/direcciones.js"></script>

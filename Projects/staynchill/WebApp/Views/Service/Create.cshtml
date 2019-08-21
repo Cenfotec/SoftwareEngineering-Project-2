@@ -1,0 +1,56 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Service/vRegisterService.js"></script>
+<script src="~/assets/js/demo1/pages/crud/forms/widgets/bootstrap-timepicker.js"></script>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Registro de Servicio
+            </h3>
+        </div>
+    </div>
+
+    @* Form body *@
+    <form class="kt_form_1" id="registerService" method="POST">
+        <div class="kt-portlet__body">
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtName", type: "text", label: "Nombre:", columnDataName: "Name")
+                </div>
+                <div class="col-lg-4">
+                    <label for="Descripcion">Descripción</label>
+                    <textarea class="form-control" id="Descripcion" rows="3" columnDataName="Description"></textarea>
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtLegalNumber *", type: "text", label: "Cédula Jurídica: ", columnDataName: "LegalNumber")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtTipo", type: "text", label: "Tipo de servicio:", columnDataName: "Type", placeHolder: "Ej. Restaurante")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlTimePicker(id: "txtHoraApertura", type: "text", label: "Hora de apertura", columnDataName: "OpeningSchedule")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlTimePicker(id: "txtHoraCierre", type: "text", label: "Hora de cierre", columnDataName: "ClosingSchedule")
+                </div>
+            </div>
+            @Html.CtrlInputHidden(id: "txtHotel", type: "hidden", label: "", columnDataName: "Hotel")
+        </div>
+        @* Form footer *@
+        <div class="kt-portlet__foot">
+            @Html.CtrlButton(viewName: "vRegisterService", id: "btnCreate", label: "Registrar", onClickFunction: "Create", buttonType: "btn btn-primary", type: "submit")
+            @Html.CtrlButton(viewName: "vRegisterService", id: "btnCancelar", label: "Cancelar", onClickFunction: "Cancel", buttonType: "btn-secondary", type: "button")
+        </div>
+    </form>
+</div>

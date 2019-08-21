@@ -1,0 +1,201 @@
+﻿@using WebApp.Helpers;
+@{
+    Layout = "~/Views/Shared/_BlankPage.cshtml";
+}
+
+<link href="~/Content/imgsContainers.css" rel="stylesheet" />
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Register/WizardValidation.js"></script>
+<script src="~/Scripts/Views/Register/vUserCreate.js"></script>
+<script src="~/Scripts/Views/Membership/vMembershipCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js" type="text/javascript"></script>
+<script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/servicio_imagen(producto).js"></script>
+
+
+
+
+
+<!--Begin::Row-->
+<div class="row d-flex justify-content-center">
+    <div>
+
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+            <div class="kt-portlet">
+                <div class="kt-portlet__body kt-portlet__body--fit">
+                    <div class="kt-grid  kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2" data-ktwizard-state="step-first">
+                        <div class="kt-grid__item kt-wizard-v2__aside">
+
+                            <!--begin: Form Wizard Nav -->
+                            <div class="kt-wizard-v2__nav">
+                                <div class="kt-wizard-v2__nav-items">
+                                    <a class="kt-wizard-v2__nav-item" data-ktwizard-type="step" data-ktwizard-state="current" style="cursor: pointer">
+                                        <div class="kt-wizard-v2__nav-body">
+                                            <div class="kt-wizard-v2__nav-icon">
+                                                <i class="flaticon-user-add"></i>
+                                            </div>
+                                            <div class="kt-wizard-v2__nav-label">
+                                                <div class="kt-wizard-v2__nav-label-title">
+                                                    Administrador de Hotel
+                                                </div>
+                                                <div class="kt-wizard-v2__nav-label-desc">
+                                                    Información general del administrador
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a class="kt-wizard-v2__nav-item" data-ktwizard-type="step" style="cursor: pointer">
+                                        <div class="kt-wizard-v2__nav-body">
+                                            <div class="kt-wizard-v2__nav-icon">
+                                                <i class="flaticon-coins"></i>
+                                            </div>
+                                            <div class="kt-wizard-v2__nav-label">
+                                                <div class="kt-wizard-v2__nav-label-title">
+                                                    Membresía
+                                                </div>
+                                                <div class="kt-wizard-v2__nav-label-desc">
+                                                    Realizar pago final
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--end: Form Wizard Nav -->
+                        </div>
+                        <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+
+                            <!--begin: Form Wizard Form-->
+                            <form class="kt-form kt_wizard_v2" id="kt_form" method="POST">
+
+                                <!--begin: Form Wizard Step 1-->
+                                <div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                                    <div class="kt-form__section kt-form__section--first">
+                                        <div class="kt-wizard-v2__form">
+                                            <div class="kt-heading kt-heading--md">Información General</div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                   
+                                                    @Html.CtrlInput(id: "txtCedula", type: "text", label: "Cédula", columnDataName: "Cedula")
+
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtPrimerNombre", type: "text", label: "Primer nombre", columnDataName: "Nombre")
+
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtSegundoNombre", type: "text", label: "Segundo nombre", placeHolder: "Opcional", columnDataName: "SegNombre")
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtPrimerApellido", type: "text", label: "Primer apellido", columnDataName: "Apellido")
+
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtSegundoApellido", type: "text", label: "Segundo apellido", columnDataName: "SegApellido")
+
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtTelefono", type: "text", label: "Teléfono", columnDataName: "Telefono")
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                            </div>
+
+                                            <div class="kt-heading kt-heading--md">Ubicación</div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlDropDown(id: "txtProvincia", pClass: "form-control kt-selectpicker", selectId: "inputProvincia", optionId: "optionProvincias", columnDataName: "vProvincia", label: "Provincia")
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlDropDown(id: "txtCanton", pClass: "form-control kt-selectpicker", selectId: "inputCanton", optionId: "optionCantones", columnDataName: "vCanton", label: "Cantón")
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlDropDown(id: "txtDistrito", pClass: "form-control kt-selectpicker", selectId: "inputDistrito", optionId: "", columnDataName: "vDistrito", label: "Distrito")
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtDireccion", type: "text", label: "Dirección", columnDataName: "Direccion")
+
+                                                </div>
+                                            </div>
+
+                                            <div class="kt-heading kt-heading--md">Credenciales</div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtEmail", type: "email", label: "Email *", placeHolder: "Ingrese su correo electrónico", columnDataName: "Correo")
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtContrasenna", type: "password", label: "Contraseña", columnDataName: "Contrasenna")
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    @Html.CtrlInput(id: "txtCContrasenna", type: "password", label: "Confirmación de contraseña", columnDataName: "CContrasenna")
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-4">
+                                                        @Html.CtrlImage(viewName: "vRegisterProducto", id: "image_previewHotel", idButton: "btnUploadProductImage")
+                                                        @Html.CtrlInputHidden(id: "txtImage", type: "hidden", label: "", columnDataName: "Value")
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--end: Form Wizard Step 1-->
+                                <!--begin: Form Wizard Step 2-->
+                                <div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+                                    <div class="kt-form__section kt-form__section--first">
+                                        @{
+                                            if (ViewBag.reqPrice != null)
+                                            {
+                                                string price = ViewBag.reqPrice.ToString();
+                                                @Html.CtrlPayPalButton("PayPalBtn", price)
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+
+                                <!--end: Form Wizard Step 2-->
+                                <!--begin: Form Actions -->
+                                <div class="kt-form__actions">
+                                    <div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+                                        Atrás
+                                    </div>
+                                    <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+                                        Siguiente
+                                    </div>
+                                    @Html.CtrlInput(id: "txtHiddenProvincia", type: "hidden", label: "", columnDataName: "Provincia")
+                                    @Html.CtrlInput(id: "txtHiddenCanton", type: "hidden", label: "", columnDataName: "Canton")
+                                    @Html.CtrlInput(id: "txtHiddenDistrito", type: "hidden", label: "", columnDataName: "Distrito")
+                                </div>
+
+                                <!--end: Form Actions -->
+                            </form>
+
+                            <!--end: Form Wizard Form-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End::Row-->

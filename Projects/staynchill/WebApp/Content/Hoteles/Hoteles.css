@@ -1,0 +1,234 @@
+﻿body {
+    background-color: #FFF;
+}
+
+.snc__card {
+    width: 100%;
+    border: 1px solid red;
+    margin-bottom: 1rem;
+    position: relative;
+    background-color: #FFF;
+    border-radius: 3px;
+    border: 1px solid #BEBEBE;
+    box-shadow: 0 0 6px 0 rgba(30,45,62,.09);
+    padding: 3px;
+}
+
+.snc__card:hover {
+    transition: 0.4s ease-in-out;
+    box-shadow: 0 10px 15px 0 rgba(30,45,62,.04), 0 0 50px 0 rgba(31,44,60,.05);
+}
+
+.snc__card:hover h2 {
+    text-decoration: underline;
+}
+
+.snc__card:hover img {
+    transform: scale(1.1);
+    transition: 0.4s ease-in-out;
+}
+
+.snc__p {
+    color: gray;
+    margin: 0;
+}
+
+.snc__hotel_leftside {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.snc__hotel_img {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.snc__hotel_img img {
+    width: 18rem;
+    height: 100%;
+}
+
+.snc__hotel_rightside {
+    float: right;
+    border-left: 1px dashed #BEBEBE;
+    height: 100%;
+    padding: 3px;
+}
+
+.snc__hotel_rightside button {
+    transform: translateY(100%);
+    padding: 1rem 5rem;
+}
+
+.snc__kt-portlet {
+    background-color: #F2F2F2;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.snc__kt-portlet--height-fluid {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+    #hotelIMG {
+        text-align: center !important;
+    }
+}
+
+.snc__habitacion_portlet {
+    border-radius: 10px;
+}
+
+.snc__habitacion_portlet:hover {
+    box-shadow: 0 10px 15px 0 rgba(30,45,62,.04), 0 0 50px 0 rgba(31,44,60,.05);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.snc__habitacion_portlet:hover h5 {
+    text-decoration: underline;
+}
+
+.snc__habitacion_portlet:hover .snc__pill_float {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: 0.3s ease-in-out;
+}
+
+.snc__search_input {
+    width: 100%;
+    height: 3rem;
+    padding: 1.5rem 3rem;
+    font-weight: 400;
+    border: 0;
+    outline: 0;
+    color: #666 !important;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    background-color: #FFF;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #FFF inset;
+    color: #666 !important;
+}
+
+.snc__search_input::placeholder {
+    color: gray;
+}
+
+.snc__search_div {
+    padding: 0.6rem !important;
+}
+
+.snc__search_icon {
+    position: absolute;
+    left: 1.7rem;
+    font-size: 1.2rem;
+    top: 50%;
+    color: #666;
+    transform: translate(0, -46%);
+}
+
+.snc__search_button {
+    width: 100%;
+    height: 3rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    border: 0;
+    outline: 0;
+    background-color: #5D78FF;
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,.15);
+}
+
+.snc__search_button:hover {
+    background-color: #738aff;
+    transition: 0.1s ease-in-out;
+}
+
+.snc__search-bar {
+    background-color: #1f274a;
+    padding: 1rem 15rem;
+}
+
+.snc__gmaps-sm-map {
+    border: 1px solid #BEBEBE;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    width: 225px;
+    height: 85px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 10px 15px 0 rgba(30,45,62,.04), 0 0 50px 0 rgba(31,44,60,.05);
+}
+
+.snc__gmaps-sm-map:hover h2 {
+    color: #5D78FF !important;
+    transition: 0.1s ease !important;
+
+}
+
+@media (min-width: 1025px) {
+    .kt-header--fixed.kt-subheader--fixed.kt-subheader--enabled .kt-wrapper {
+        padding-top: 65px;
+    }
+}
+
+#map {
+    height: 600px;
+    width: 900px;
+  }
+  #right-panel {
+    font-family: 'Roboto','sans-serif';
+    font-size: 1.4em;
+    line-height: 30px;
+    padding-left: 10px;
+  }
+
+  #right-panel select, #right-panel input {
+    font-size: 15px;
+  }
+
+  #right-panel select {
+    width: 100%;
+  }
+
+  #right-panel i {
+    font-size: 15px;
+  }
+  #right-panel {
+    height: 600px;
+    float: right;
+    width: 390px;
+    overflow: auto;
+  }
+  #map {
+    margin-right: 400px;
+  }
+  @media print {
+    #map {
+      height: 500px;
+      margin: 0;
+    }
+    #right-panel {
+      float: none;
+      width: auto;
+    }
+  }
+ 
+.map-card{
+    text-align: center;
+}  

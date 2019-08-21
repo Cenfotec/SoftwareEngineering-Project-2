@@ -1,0 +1,6 @@
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\bin\Debug\Entities-POJO.dll
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\bin\Debug\Entities-POJO.pdb
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\obj\Debug\Entities-POJO.csproj.CoreCompileInputs.cache
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\obj\Debug\Entities-POJO.dll
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\obj\Debug\Entities-POJO.pdb
+D:\Azure DevOps\staynchill\dev\staynchill\Entities-POJO\obj\Debug\Entities-POJO.csprojAssemblyReference.cache

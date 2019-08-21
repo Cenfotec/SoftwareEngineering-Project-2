@@ -1,0 +1,35 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Dashboard";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/Room/vRoomIndex.js"></script>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Habitaciones del hotel
+            </h3>
+        </div>
+    </div>
+    @* Table *@
+    <div class="kt-portlet__body">
+        @* Form controls *@
+        @Html.CtrlTable(
+        viewName: "vRoomIndex",
+        id: "Room",
+        title: "Habitaciones",
+        columnsTitle: "Número de Habitación,Tipo de Habitación,Descripción,Acciones",
+        ColumnsDataName: "RoomNumber,RoomTypeName,Description,Actions",
+        onSelectFunction: "BindFieldsCustom",
+        colorHeader:"red",
+        dataId: "Id"
+        )
+    </div>
+</div>

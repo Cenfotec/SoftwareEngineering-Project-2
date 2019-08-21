@@ -1,0 +1,42 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Dashboard";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/Product/vProductIndex.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+
+<div class="kt-portlet__head">
+    <div class="kt-subheader kt-grid__item" id="kt_subheader">
+        <div class="kt-container kt-container--fluid ">
+            <div class="kt-subheader__main">
+
+            </div>
+            <div class="kt-subheader__toolbar">
+                <a href="demo1/custom/apps/user/add-user.html" class="btn btn-label-brand btn-bold">
+                    Añadir Producto
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Lista de productos
+            </h3>
+            @*@Html.CtrlButtonAction(id: "redirectRegistrarProducto", label: "Registrar", link: "product/create")*@
+        </div> 
+    </div>
+
+    @* Table *@
+    @Html.CtrlTable(viewName: "vProductIndex", id: "TBL_PRODUCTS", title: "Products List",
+    columnsTitle: "Name,Description,ArrivalDate,State", ColumnsDataName: "Name,Description,ArrivalDate,State", onSelectFunction: "BindFieldsCustom", colorHeader:"red", dataId: "Code")
+</div>

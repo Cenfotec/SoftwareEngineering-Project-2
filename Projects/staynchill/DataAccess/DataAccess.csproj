@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D2629F57-15FD-4339-8A38-467E2E940625}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.11.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.11.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.5.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crud\AdvertisementCrud.cs" />
+    <Compile Include="Crud\ApplicationMessageCrud.cs" />
+    <Compile Include="Crud\CantVentasByDayStatsCrud.cs" />
+    <Compile Include="Crud\CheckCrud.cs" />
+    <Compile Include="Crud\CommonCrud.cs" />
+    <Compile Include="Crud\CodeCrud.cs" />
+    <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\HotelStats\HotelAnualIncomeCrud.cs" />
+    <Compile Include="Crud\HotelStats\HotelsStatsCrud.cs" />
+    <Compile Include="Crud\InfoChatBotCrud.cs" />
+    <Compile Include="Crud\MembershipCrud.cs" />
+    <Compile Include="Crud\PaymentTransactionCrud.cs" />
+    <Compile Include="Crud\HotelCrud.cs" />
+    <Compile Include="Crud\ImageHotelCrud.cs" />
+    <Compile Include="Crud\PlatformStatsCrud.cs" />
+    <Compile Include="Crud\ProductCrud.cs" />
+    <Compile Include="Crud\CommissionCrud.cs" />
+    <Compile Include="Crud\ProductoCarritoCrud.cs" />
+    <Compile Include="Crud\ProductoCrud.cs" />
+    <Compile Include="Crud\QRCodeCrud.cs" />
+    <Compile Include="Crud\RequestCrud.cs" />
+    <Compile Include="Crud\ReservationCrud.cs" />
+    <Compile Include="Crud\AvailableRoomsCrud.cs" />
+    <Compile Include="Crud\VistaReservacionCrud.cs" />
+    <Compile Include="Crud\RolCrud.cs" />
+    <Compile Include="Crud\ServiceCrud.cs" />
+    <Compile Include="Crud\UbicationCrud.cs" />
+    <Compile Include="Crud\UserCrud.cs" />
+    <Compile Include="Crud\SMSCrud.cs" />
+    <Compile Include="Crud\TaxCrud.cs" />
+    <Compile Include="Crud\RoomCrud.cs" />
+    <Compile Include="Crud\RoomTypeCrud.cs" />
+    <Compile Include="Crud\UserReservationCrud.cs" />
+    <Compile Include="Dao\ClrTypeToSqlDbTypeMapper.cs" />
+    <Compile Include="Dao\MapperCache.cs" />
+    <Compile Include="Dao\SqlDao.cs" />
+    <Compile Include="Dao\SqlOperation.cs" />
+    <Compile Include="Exceptions\ExceptionManagment.cs" />
+    <Compile Include="Mapper\Entities\Advertisement\AdvertisementObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Advertisement\AdvertisementMapper.cs" />
+    <Compile Include="Mapper\Entities\ApplicationMessage\ApplicationMessageMapper.cs" />
+    <Compile Include="Mapper\Entities\ApplicationMessage\ApplicationMessageObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\CantVentasByDayStats\CantVentasByDayStatsMapper.cs" />
+    <Compile Include="Mapper\Entities\CantVentasByDayStats\CantVentasByDayStatsObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Check\CheckMapper.cs" />
+    <Compile Include="Mapper\Entities\Check\CheckObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Common\CommonMapper.cs" />
+    <Compile Include="Mapper\Entities\Common\CommonObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Code\CodeMapper.cs" />
+    <Compile Include="Mapper\Entities\Code\CodeObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Commission\CommissionMapper.cs" />
+    <Compile Include="Mapper\Entities\Commission\CommissionObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\CommissionHotel\CommissionHotelObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\HotelAnualIncome\HotelAnualIncomeMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\HotelAnualIncome\HotelAnualAverageIncomeObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\HotelAnualIncome\HotelAnualTotalIncomeObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\HotelStatsMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\ObjectMappers\HotelTotalIncomeByMonthObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\ObjectMappers\HotelTotalReservationsByMonthObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\HotelStats\ObjectMappers\HotelTotalReservationsObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Hotel\HotelMapper.cs" />
+    <Compile Include="Mapper\Entities\Hotel\HotelObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\ImageHotel\ImageHotelMapper.cs" />
+    <Compile Include="Mapper\Entities\ImageHotel\ImageHotelObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\PlatformStats\PlatformStatsMapper.cs" />
+    <Compile Include="Mapper\Entities\PlatformStats\PlatformStatsObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\InfoChatBot\InfoChatBotMapper.cs" />
+    <Compile Include="Mapper\Entities\InfoChatBot\InfoChatBotObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\ProductoCarrito\ProductoCarritoMapper.cs" />
+    <Compile Include="Mapper\Entities\ProductoCarrito\ProductoCarritoObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Producto\ProductoMapper.cs" />
+    <Compile Include="Mapper\Entities\Producto\ProductoObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\QRCode\QRCodeMapper.cs" />
+    <Compile Include="Mapper\Entities\QRCode\QRCodeObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\RelatedSubReservation\RelatedSubReservationMapper.cs" />
+    <Compile Include="Mapper\Entities\RelatedSubReservation\RelatedSubReservationObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Request\RequestMapper.cs" />
+    <Compile Include="Mapper\Entities\Request\RequestObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Reservation\ReservationMapper.cs" />
+    <Compile Include="Mapper\Entities\Reservation\ReservationObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\AvailableRooms\AvailableRoomsMapper.cs" />
+    <Compile Include="Mapper\Entities\AvailableRooms\AvailableRoomsObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\VistaReservacion\VistaReservacionMapper.cs" />
+    <Compile Include="Mapper\Entities\VistaReservacion\VistaReservacionObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Rol\RolMapper.cs" />
+    <Compile Include="Mapper\Entities\Rol\RolObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Membership\MembershipMapper.cs" />
+    <Compile Include="Mapper\Entities\Membership\MembershipObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\PaymentTransaction\PaymentTransactionMapper.cs" />
+    <Compile Include="Mapper\Entities\PaymentTransaction\PaymentTransactionObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Product\ProductMapper.cs" />
+    <Compile Include="Mapper\Entities\Product\ProductObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Service\ServiceMapper.cs" />
+    <Compile Include="Mapper\Entities\Service\ServiceObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Ubication\UbicationMapper.cs" />
+    <Compile Include="Mapper\Entities\Ubication\UbicationObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\UserReservation\UserReservationMapper.cs" />
+    <Compile Include="Mapper\Entities\UserReservation\UserReservationObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\User\UserMapper.cs" />
+    <Compile Include="Mapper\Entities\User\UserObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\SMS\SMSMapper.cs" />
+    <Compile Include="Mapper\Entities\SMS\SMSObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Tax\TaxMapper.cs" />
+    <Compile Include="Mapper\Entities\Tax\TaxObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\Room\RoomMapper.cs" />
+    <Compile Include="Mapper\Entities\Room\RoomObjectMapper.cs" />
+    <Compile Include="Mapper\Entities\RoomType\RoomTypeMapper.cs" />
+    <Compile Include="Mapper\Entities\RoomType\RoomTypeObjectMapper.cs" />
+    <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\IObjectMapper.cs" />
+    <Compile Include="Mapper\ISqlStaments.cs" />
+    <Compile Include="Mapper\ISqlStamentsGeneric.cs" />
+    <Compile Include="Mapper\ObjectMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities-POJO\Entities-POJO.csproj">
+      <Project>{DE93E209-BA00-452A-9D39-DE4231F6FC7F}</Project>
+      <Name>Entities-POJO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

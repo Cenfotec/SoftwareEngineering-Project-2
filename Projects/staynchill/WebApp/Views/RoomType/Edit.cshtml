@@ -1,0 +1,69 @@
+﻿
+@using WebApp.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Stay n'Chill | Dashboard";
+}
+
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/Scripts/Views/RoomType/vRoomTypeUpdate.js"></script>
+<script src="~/assets/js/demo1/pages/crud/forms/widgets/bootstrap-timepicker.js"></script>
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Modificar tipos de habitación
+            </h3>
+        </div>
+    </div>
+
+    @* Form body *@
+    <form class="kt_form_1 kt-form" id="updateRoomType" method="POST">
+        <div class="kt-portlet__body">
+            @* Form controls *@
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "txtName", type: "text", label: "Nombre *", columnDataName: "Name")
+                </div>
+                <div class="col-lg-4">
+                    <label for="Descripcion">Descripción</label>
+                    <textarea class="form-control" id="Descripcion" rows="3" columnDataName="Description" name="Description"></textarea>
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "amountPeople", type: "number", label: "Cantidad máx. de personas *", columnDataName: "AmountPeople")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "amountBeds", type: "number", label: "Cantidad de camas *", columnDataName: "AmountBeds")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlCurrencyInput(id: "txtPrice", type: "text", label: "Precio", placeHolder: "1,000.00", columnDataName: "Price", ariaLabel: "Amount (to the nearest dollar)", prepend: "$")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlCheckBox(viewName: "RoomTypeCreate", id: "checkBoxPets", idcb1: "cbPetsAllowed", idcb2: "cbPetsDenied", label: "Acceso de mascotas", name: "btnPetsAllowed", value: "Permitir", valueb: "Prohibir", placeholder: "Seleccione si se permiten mascotas en la habitación")
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlTimePicker(id: "txtHoraIn", type: "text", label: "Hora de check-in", columnDataName: "HorarioCheckIn")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlTimePicker(id: "txtHoraOut", type: "text", label: "Hora de check-out", columnDataName: "HorarioCheckOut")
+                </div>
+            </div>
+            @* Form footer *@
+            <div class="kt-portlet__foot">
+                @Html.CtrlButton(viewName: "RoomTypeCreate", id: "btnCreate", label: "Actualizar", buttonType: "btn-primary", type: "submit")
+                @Html.CtrlButton(viewName: "vRoomTypeUpdate", id: "btnCancel", label: "Cancelar", onClickFunction: "Cancel", buttonType: "btn btn-secondary", type: "button")
+                @Html.CtrlInputHidden(id: "txtPetsAllowed", type: "hidden", label: "", columnDataName: "PetsAllowed")
+                @Html.CtrlInputHidden(id: "txtHotel", type: "hidden", label: "", columnDataName: "IdHotel")
+                @Html.CtrlInputHidden(id: "txtId", type: "hidden", label: "", columnDataName: "Id")
+            </div>
+        </div>
+    </form>
+</div>

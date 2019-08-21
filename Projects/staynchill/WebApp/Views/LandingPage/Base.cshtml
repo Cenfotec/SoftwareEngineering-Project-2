@@ -1,0 +1,56 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Inicio";
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+<link href="~/Content/imgsContainers.css" rel="stylesheet" />
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js" type="text/javascript"></script>
+<script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/servicio_imagen(producto).js"></script>
+<script src="~/Scripts/Views/Producto/vRegisterProduct.js"></script>
+
+
+
+<!--Begin::Portlet-->
+<div class="kt-portlet kt-portlet--height-fluid">
+
+    <div class="kt-portlet__head justify-content-center">
+        <h2 class="kt-portlet__head-title mt-3">
+            Título Base del Hotel
+        </h2>
+    </div>
+
+    <div class="kt-portlet__body">
+
+
+        @* Form *@
+        <div class="form-group row">
+            <div class="col-lg-4">
+                @Html.CtrlInput(id: "txtName", type: "text", label: "Nombre:", columnDataName: "Name")
+            </div>
+
+            <div class="col-lg-4">
+                @Html.CtrlInputIcon(id: "txtPrice", type: "number", label: "Precio", placeHolder: "0.00", columnDataName: "Price", ariaLabel: "Amount (to the nearest dollar)", prepend: "$")
+            </div>
+        </div>
+
+        @* Form Footer*@
+        <div class="kt-portlet__foot">
+            @Html.CtrlButton(viewName: "vRequestIndex", id: "btnCreate", label: "Solicitar", onClickFunction: "Create", buttonType: "btn-primary", type: "submit")
+            @Html.CtrlButton(viewName: "vRequestCreate", id: "btnCancelar", label: "Cancelar", onClickFunction: "Cancel", buttonType: "btn-secondary", type: "button")
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+<!--End::Portlet-->
+
+<link href="~/Content/GeneralMain/Main.css" rel="stylesheet" />

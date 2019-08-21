@@ -1,0 +1,143 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Product/ListProduct.css" rel="stylesheet" />
+<script src="~/Scripts/Views/Service/listService.js"></script>
+<script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+<script src="~/Scripts/Views/Producto/vProductIndex.js"></script>
+<script src="~/Scripts/Views/Producto/vProductModoCajero.js"></script>
+<script src="~/assets/js/demo1/pages/crud/forms/widgets/select2.js"></script>
+
+<div class="kt-portlet__head">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    Productos
+                </h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                <div class="kt-subheader__group" id="kt_subheader_search">
+                    <form class="kt-margin-l-20" id="kt_subheader_search_form">
+                        <div class="kt-input-icon kt-input-icon--right kt-subheader__search">
+                            <input type="text" class="form-control" placeholder="Buscar..." id="generalSearch">
+                            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" id="Path-2" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+                                        </g>
+                                    </svg>
+
+                                    <!--<i class="flaticon2-search-1"></i>-->
+                                </span>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="kt-subheader__toolbar"></div>
+        </div>
+    </div>
+
+</div>
+
+@* Form body *@
+<div class="kt-portlet snc__mt-3">
+    <div class="kt-portlet__body">
+        <div class="kt-widget kt-widget--user-profile-3">
+            <div class="kt-widget__top">
+                <div class="kt-widget__media kt-hidden-">
+
+                </div>
+                <div class="kt-widget__content">
+
+                    <div class="kt-widget__head">
+                        <a class="kt-widget__username" id="nombreServicio">
+                            @* Aquí va el nombre del servicios*@
+                        </a>
+                        <div class="kt-widget__action">
+                            <button type="button" class="btn btn-label-primary btn-sm btn-upper" id="btnModoCajero">Modo Cajero</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-label-primary btn-sm btn-upper" onclick="window.location.href='/dashboard/service/product/create'">Añadir producto</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-label-success btn-sm btn-upper" onclick="window.location.href='/dashboard/service/edit'">Modificar</button>
+                            &nbsp;
+                            <button type="button" class="btn btn-label-danger btn-sm btn-upper" id="btnEliminarServicio">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="kt-widget__subhead">
+
+                        <a id="type">
+                            @* Aquí va el tipo de servicio*@
+                        </a>
+
+                        <a id="ophour">
+                            @* Aquí va la hora de incio *@
+                        </a>
+
+                        <a id="clhour">
+                            @* Aquí va la hora de cierre *@
+                        </a>
+
+                    </div>
+
+                    <div class="kt-widget__info" id="descripcion">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+                    <div class="kt-widget__info" id="cedula">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="kt-portlet__body">
+
+    <!--begin::Modal-->
+    <div class="modal fade" id="kt_select2_modal" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Leer de Código QR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="la la-remove"></span>
+                    </button>
+                </div>
+                <form class="kt-form kt-form--fit kt-form--label-right">
+                    <div class="modal-body">
+                        <div id="qrCodeScannerModal" class="modal-body text-center">
+                            <!-- QR Code Scanner -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="qrCodeScannerModalFooter">
+                            <!-- Generates button on QR Code match -->
+                        </div>
+                        
+                        <button id="btnCerraModalQRCode" type="button" class="btn btn-brand" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--end::Modal-->
+
+    <div id="parentProductsCards" class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+
+    </div>
+
+</div>

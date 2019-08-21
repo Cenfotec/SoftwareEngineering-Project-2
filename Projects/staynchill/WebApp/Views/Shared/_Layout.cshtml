@@ -1,0 +1,140 @@
+﻿@using WebApp.Models.ViewModels;
+
+@{
+    var user = Session["user"] as UserViewModel;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Updates and statistics">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="~/assets/globalAssets/js/theme/core/util.js"></script>
+    <script src="~/assets/globalAssets/js/theme/core/app.js"></script>
+    <script src="~/assets/vendors/global/vendors.bundle.js"></script>
+    <script src="~/assets/js/demo1/pages/dashboard.js"></script>
+    <script src="~/assets/js/demo1/scripts.bundle.js"></script>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Content/Chart.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/assets/vendors/custom/datatables/datatables.bundle.js"></script>
+    <script src="~/Scripts/Views/ControlActions.js"></script>
+    <script src="~/Scripts/Views/vIndex.js"></script>
+
+
+    @* Form scripts *@
+
+    <script src="~/assets/js/demo1/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+
+
+
+    <!--begin::Fonts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": [
+                    "Poppins:300,400,500,600,700",
+                    "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <!--end::Fonts -->
+    <!--begin::Page Vendors Styles(used by this page) -->
+    <link href="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" />
+    
+    <link href="~/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" />
+    <!--end::Page Vendors Styles -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/assets/vendors/global/vendors.bundle.css" rel="stylesheet" />
+    <link href="~/assets/css/demo1/style.bundle.css" rel="stylesheet" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="~/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" />
+    <link href="~/assets/css/demo1/skins/header/menu/light.rtl.css" rel="stylesheet" />
+    <link href="~/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" />
+    <link href="~/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" />
+    <!--end::Layout Skins -->
+
+
+    <link rel="shortcut icon" href="~/Images/favicon.ico" />
+</head>
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+
+    @Html.Partial("_header-base-mobile")
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            @if (user != null)
+            {
+                @Html.Partial("_Aside")
+            }
+
+            @* @Html.Partial("_Aside", new AsideViewModel(){ AsideUrl= ViewBag.asideUrl }) *@
+            <!-- end:: Aside -->
+
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                @if (user != null)
+                {
+                    @Html.Partial("_Header")
+                }
+
+                <!-- end:: Header -->
+                <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+                    <!-- begin:: Content Head -->
+                    @*@Html.Partial("_Subheader")*@
+                    <!-- end:: Content Head -->
+                    <!-- begin:: Content -->
+                    <div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+                        @RenderBody()
+                    </div>
+                    <!-- end:: Content -->
+
+                </div>
+                <!-- begin:: Footer -->
+                @Html.Partial("_Footer")
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <!-- begin::Global Config(global config for global JS scripts) -->
+    @Html.Partial("_Global-Config")
+    <!-- end::Global Config -->
+    <!-- begin::Quick Panel -->
+    @Html.Partial("_Quick-Panel")
+    <!-- end::Quick Panel -->
+    <!-- begin::Scrolltop -->
+    <div id="kt_scrolltop" class="kt-scrolltop"><i class="fa fa-arrow-up"></i></div>
+    <!-- end::Scrolltop -->
+    <!-- begin::Sticky Toolbar -->
+
+
+
+
+    <script src="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js"></script>
+
+    @*<script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM" type="text/javascript"></script>*@
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

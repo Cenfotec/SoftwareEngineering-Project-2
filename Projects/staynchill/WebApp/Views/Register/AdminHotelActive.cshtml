@@ -1,0 +1,53 @@
+﻿@using WebApp.Helpers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Membership/vMembershipCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js" type="text/javascript"></script>
+<script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/Views/Register/servicio_imagen.js"></script>
+
+
+
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Pago de Membresía de Hotel
+            </h3>
+        </div>
+    </div>
+
+    @* Portlet body *@
+    <div class="kt-portlet__body">
+        <div class="row justify-content-center mt-5">
+            <h5>Para completar el registro del hotel solicitado, por favor proceda a ralizar el pago.</h5>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-4">
+
+                @* PayPal Button *@
+                @{
+                    if (ViewBag.reqPrice != null)
+                    {
+                        string price = ViewBag.reqPrice.ToString();
+                        @Html.CtrlPayPalButton("PayPalBtn", price)
+                    }
+                }
+
+                <div class="kt-portlet__foot">
+
+                    @Html.CtrlInput(id: "txtHiddenProvincia", type: "hidden", label: "", columnDataName: "Provincia")
+                    @Html.CtrlInput(id: "txtHiddenCanton", type: "hidden", label: "", columnDataName: "Canton")
+                    @Html.CtrlInput(id: "txtHiddenDistrito", type: "hidden", label: "", columnDataName: "Distrito")
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Registrar Habitación";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/imgsContainers.css" rel="stylesheet" />
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Room/vRoomCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js" type="text/javascript"></script>
+<script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/servicio_imagen(habitacion).js"></script>
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Registrar de habitación
+            </h3>
+        </div>
+    </div>
+    @* Form body *@
+    <form class="kt_form_1" id="registroHabitacion" method="POST">
+        <div class="kt-portlet__body">
+            @* Form controls *@
+            @Html.CtrlInputHidden(id: "txtIdHotel", type: "hidden", label: "", placeHolder: "", columnDataName: "IdHotel")
+            <div class="form-group row">
+                <div class="col-lg-4">
+                    @Html.CtrlDropDown(id: "sltRoomType", pClass: "form-control kt-selectpicker", selectId: "inputRoomType", columnDataName: "RoomType", label: "Tipo de habitación")
+                </div>
+                <div class="col-lg-4">
+                    @Html.CtrlInput(id: "nmbrRoom", type: "number", label: "Numero habitación*", columnDataName: "RoomNumber")
+                </div>
+                    <div class="col-lg-4">
+                        <label for="Descripcion">Descripción</label>
+                        <textarea class="form-control" id="Descripcion" rows="3" columnDataName="Description"></textarea>
+                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-4">
+                    @Html.CtrlImage(viewName: "vRoomIndex", id: "image_preview", idButton: "btnUploadRoomImage")
+                </div>
+            </div>
+        </div>
+        @* Form footer *@
+        <div class="kt-portlet__foot">
+
+            @Html.CtrlButton(viewName: "vRoomCreate", id: "btnCreate", label: "Registrar", onClickFunction: "", buttonType: "btn-primary", type: "submit")
+            @Html.CtrlButton(viewName: "vRoomCreate", id: "btnCancelar", label: "Cancelar", onClickFunction: "Cancel", buttonType: "btn-secondary", type: "button")
+
+        </div>
+        @Html.CtrlInputHidden(id: "txtImage", type: "hidden", label: "", columnDataName: "Value")
+    </form>
+
+</div>

@@ -1,0 +1,22 @@
+﻿#btnubicacion {
+    width: 300px;
+    height: 38px;
+}
+
+/*#kt_autosize_2{
+    width: 670px;
+}*/
+
+#btnSubirImagenHotel {
+    width: 300px;
+    height: 38px;
+}
+
+#divinner {
+    border-radius: 5px;
+}
+
+#carouselExampleControls {
+    width: 450px;
+    height: auto;
+}

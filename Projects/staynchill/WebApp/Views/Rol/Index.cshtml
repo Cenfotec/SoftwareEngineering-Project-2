@@ -1,0 +1,81 @@
+﻿@using WebApp.Helpers;
+
+@{
+    ViewBag.Title = "Stay n'Chill | Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Rol/ListRol.css" rel="stylesheet" />
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Rol/vRoles.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/assets/js/demo1/pages/crud/forms/widgets/select2.js"></script>
+
+<div class="kt-portlet__head">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main"></div>
+            <div class="kt-subheader__toolbar">
+                <a href="#" class="">
+                </a>
+                <a data-toggle="modal" data-target="#kt_select2_modal" class="btn btn-label-brand btn-bold">
+                    Añadir rol
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Lista de roles
+            </h3>
+        </div>
+    </div>
+    @* Table *@
+    @Html.CtrlTable(viewName: "vRoles", id: "TBL_ROLES", title: "Roles",
+        columnsTitle: "Nombre del rol,Acciones", ColumnsDataName: "Name,Action", onSelectFunction: "", colorHeader:"red", dataId: "Hotel")
+</div>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    @* Form body *@
+    <form class="kt_form_1" id="form_1" method="POST">
+            @* Form controls *@
+            <!--begin::Modal-->
+            <div class="modal fade" id="kt_select2_modal" role="dialog" aria-labelledby="" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="">Registro de rol</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="la la-remove"></span>
+                            </button>
+                        </div>
+                        <form class="kt-form kt-form--fit kt-form--label-right">
+                            <div class="modal-body">
+                                <!---Input Rol-->
+                                <div class="col-lg-4">
+                                    @Html.CtrlInput(id: "txtName", type: "text", label: "Nombre del rol", columnDataName: "Name")
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.CtrlDropDownTags(id: "select_permisos", label: "Permisos", name: "Multiselect")
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                @Html.CtrlButton(viewName: "vRoles", id: "btnCreate", label: "Registrar rol", onClickFunction: "", buttonType: "btn-primary", type: "sumbit")
+                                <button type="button" class="btn btn-brand" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end::Modal-->
+        @* Form footer *@
+
+    </form>
+</div>

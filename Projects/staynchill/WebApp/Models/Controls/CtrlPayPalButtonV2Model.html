@@ -1,0 +1,228 @@
+﻿<div id="-#DivId-"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=-#ClientId-&currency=-#Currency-"></script>
+
+<script>
+    Date.daysBetween = function (date1, date2) {
+        //Get 1 day in milliseconds
+        var one_day = 1000 * 60 * 60 * 24;
+
+        // Convert both dates to milliseconds
+        var date1_ms = date1.getTime();
+        var date2_ms = date2.getTime();
+
+        // Calculate the difference in milliseconds
+        var difference_ms = date2_ms - date1_ms;
+        //take out milliseconds
+        difference_ms = difference_ms / 1000;
+        var seconds = Math.floor(difference_ms % 60);
+        difference_ms = difference_ms / 60;
+        var minutes = Math.floor(difference_ms % 60);
+        difference_ms = difference_ms / 60;
+        var hours = Math.floor(difference_ms % 24);
+        var days = Math.floor(difference_ms / 24);
+
+        return {
+            Days: days,
+            Hours: hours,
+            Minutes: minutes,
+            Seconds: seconds
+        };
+    }
+
+    FormatDate = function (date, lang) {
+        // e.g. 07 0ct, 18
+        let formattedDate = date.split('/');
+        let m_es = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let m_en = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        let day = formattedDate[1];
+        let month = formattedDate[0];
+        let year = formattedDate[2];
+        let monthFormatted = (lang == 'es') ? m_es[(parseInt(month) - 1)] : (lang == 'en') ? m_es[(parseInt(month) + 1)] : '';
+
+        formattedDate = day + ' ' + monthFormatted.substring(0, 3) + ', ' + year.substring(2, 4);
+
+        return formattedDate;
+    }
+
+    var PayPalClientSideLogicV2 = function () {
+
+        var ctrlActions = new ControlActions()
+        var service = 'paymentTransactionv2'
+
+        var createOrder = function (data, actions) {
+            var reservationSearchData = JSON.parse(localStorage.getItem('_reservationSearchData'));
+
+            var dateDifference = Date.daysBetween(new Date(reservationSearchData.Date.Start), new Date(reservationSearchData.Date.End));
+            var commissionTotal = (reservationSearchData.AvailableRoom.Precio * dateDifference.Days) / 100 * reservationSearchData.Hotel.Commission;          
+            var totalPrice = reservationSearchData.AvailableRoom.Precio * dateDifference.Days;
+
+            var newOrder = {
+                amount: {
+                    value: totalPrice
+                }
+            }
+            return actions.order.create({
+                purchase_units: [newOrder]
+            });
+        }
+
+        var postPaymentTransaction = details => {
+            console.log("details: ", details);
+
+            var reservationSearchData = JSON.parse(localStorage.getItem('_reservationSearchData'));
+
+            var DateDifference = Date.daysBetween(new Date(reservationSearchData.Date.Start), new Date(reservationSearchData.Date.End));
+            var CommissionTotal = (reservationSearchData.AvailableRoom.Precio * DateDifference.Days) / 100 * reservationSearchData.Hotel.Commission;
+            var TotalPrice = (reservationSearchData.AvailableRoom.Precio * DateDifference.Days) - CommissionTotal;
+
+            var paymentTransactionV2 = {
+                OrderId: details.id,
+                PayerId: details.payer.payer_id,
+                TotalAmount: details.purchase_units[0] ? details.purchase_units[0].amount.value : "0",
+                CommissionPercentage: reservationSearchData.Hotel.Commission,
+                CommissionTotal,
+                BasePrice: TotalPrice + CommissionTotal,
+                PaypalEmail: reservationSearchData.Hotel.HotelEmail,
+                FkHotel: reservationSearchData.Hotel.Id,
+                Category: 'reservacion'
+            }
+            console.log(paymentTransactionV2);
+
+            var jqxhr = ctrlActions.GetMethodPostToAPI(service, paymentTransactionV2)
+
+            return jqxhr
+        }
+
+        var onApprove = (data, actions) => {
+            var logFunc = actions.order.capture();
+
+            logFunc.then(details => {
+
+                var jqxhr = postPaymentTransaction(details)
+                   
+                return jqxhr
+            }).then((res) => {
+                console.log("logFunc", logFunc)
+            var reservationSearchData = JSON.parse(localStorage.getItem('_reservationSearchData'));
+            var DateDifference = Date.daysBetween(new Date(reservationSearchData.Date.Start), new Date(reservationSearchData.Date.End));
+
+            var ReservationData = {
+                Id: 0,
+                FkUser: reservationSearchData.User.Id,
+                FkHotel: reservationSearchData.Hotel.Id,
+                StartDate: reservationSearchData.Date.Start,
+                EndDate: reservationSearchData.Date.End,
+                Price: (reservationSearchData.AvailableRoom.Precio * DateDifference.Days),
+                State: 'Enabled',
+                FKRoom: reservationSearchData.AvailableRoom.Id,
+                FkReservation: 0,
+                FkSubreservation: 0
+            };
+
+            var reservationMethod = ctrlActions.GetMethodPostToAPI('Reservation', ReservationData);
+            return reservationMethod
+
+            })
+                .then(res_2 => {
+
+                    var reservationSearchData = JSON.parse(localStorage.getItem('_reservationSearchData'));
+                    var DateDifference = Date.daysBetween(new Date(reservationSearchData.Date.Start), new Date(reservationSearchData.Date.End));
+
+                console.log("res_2", res_2)
+                var ReservationInvoice = {
+                    CorreoUsuario: reservationSearchData.User.Correo,
+                    NombreUsuario: reservationSearchData.User.Nombre,
+                    ApellidoUsuario: reservationSearchData.User.Apellido,
+                    NombreHotel: reservationSearchData.Hotel.Name,
+                    TipoHabitacion: reservationSearchData.AvailableRoom.Description,
+                    NumHabitacion: reservationSearchData.AvailableRoom.RoomNumber,
+                    CheckIn: FormatDate(reservationSearchData.Date.Start, 'es'),
+                    CheckOut: FormatDate(reservationSearchData.Date.End, 'es'),
+                    CantidadNoches: DateDifference.Days,
+                    PrecioTotal: 'USD ' + (DateDifference.Days * reservationSearchData.AvailableRoom.Precio).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                };
+
+                // Generate QR Code & Send QR Code
+                var QRCodeData = {
+                    Id: reservationSearchData.User.Id,
+                    Value: 'none',
+                    State: reservationSearchData.User.Correo,
+                    FK_SubReservation: res_2.Data.FkSubreservation
+                };
+
+                var generateQRCodeMethod = ctrlActions.GetMethodPostToAPI('qrcode', { qrCode: QRCodeData, reservationInvoice: ReservationInvoice });
+                return generateQRCodeMethod
+            })
+            .then(res_4 => {
+
+                $.notify({
+                    // options
+                    icon: 'glyphicon glyphicon-warning-sign',
+                    title: 'Código QR',
+                    message: 'Su código QR de reservación ha sido enviado a su correo.'
+                },
+                    {
+                        // settings
+                        element: 'body',
+                        position: null,
+                        type: "success",
+                        allow_dismiss: true,
+                        newest_on_top: false,
+                        showProgressbar: false,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                            position: "top"
+                        },
+                        offset: 20,
+                        spacing: 10,
+                        z_index: 3000,
+                        delay: 5000,
+                        timer: 1000,
+                        url_target: '_blank',
+                        mouse_over: null,
+                        animate: {
+                            enter: 'animated fadeInDown',
+                            exit: 'animated fadeOutUp'
+                        },
+                        onShow: null,
+                        onShown: null,
+                        onClose: null,
+                        onClosed: null,
+                        icon_type: 'class',
+                        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss"></button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="title">{1}</span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<div class="progress" data-notify="progressbar">' +
+                            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                            '</div>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                    });
+                location.href = '/';
+
+            })
+
+            
+
+            return logFunc
+
+        }
+        var logic = {
+            // Set up the transaction
+            createOrder,
+
+            // Finalize the transaction
+            onApprove
+        }
+        return {
+            getLogic: () => logic
+        }
+    }();
+
+    paypal.Buttons(PayPalClientSideLogicV2.getLogic()).render('#-#DivId-');
+</script>

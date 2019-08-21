@@ -1,0 +1,94 @@
+﻿
+@using WebApp.Helpers;
+
+@{
+    ViewBag.Title = "Crear promoción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/Advertisement/vAdvertisementCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Registrar Promoción
+            </h3>
+        </div>
+    </div>
+    @* Form body *@
+    <form class="kt-form kt-form--label-right" id="CreateAdvertisement" method="POST">
+        <div class="kt-portlet__body">
+            @* Form controls *@
+
+            @Html.CtrlInput(
+                id: "txtName",
+                type: "text",
+                label: "Nombre *",
+                placeHolder: "Nombre de la promoción...",
+                columnDataName: "Name"
+            )
+
+            @Html.CtrlInputIcon(
+                id: "txtValue",
+                type: "number",
+                label: "Precio *",
+                placeHolder: "0.00",
+                columnDataName: "Value",
+                ariaLabel: "Amount (to the nearest dollar)",
+                prepend: "$"
+            )
+
+            @Html.CtrlInput(
+                id: "txtRemainingOffers",
+                type: "number",
+                label: "Cantidad de cupos *",
+                placeHolder: "Ingrese cantidad de cupos disponibles",
+                columnDataName: "RemainingOffers"
+            )
+
+            @Html.CtrlInputDatePicker(
+                id: "dateStartDate",
+                label: "Fecha de inicio *",
+                placeHolder: "Fecha de inicio",
+                columnDataName: "StartDate"
+            )
+
+            @Html.CtrlInputDatePicker(
+                id: "dateEndDate",
+                label: "Fecha de finalización *",
+                placeHolder: "Fecha de finalización",
+                columnDataName: "EndDate"
+            )
+
+
+            @Html.CtrlTextAreaAutosize(
+                id: "kt_autosize_2",
+                label: "Descripción",
+                labelClass: "col-form-label col-lg-3 col-sm-12",
+                textAreaClass: "col-lg-4 col-md-9 col-sm-12",
+                placeHolder: "",
+                columnDataName: "Description"
+            )
+
+        </div>
+
+        @* Form footer *@
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions kt-form__actions--right">
+
+                <div class="row kt-form__actions--right">
+                    <div class="col-lg-12 col-md-6 col-sm-6">
+                        @Html.CtrlButton(viewName: "vAdvertisementCreate", id: "btnCreate", label: "Registrar", buttonType: "btn-primary", type: "submit")
+                        @Html.CtrlButton(viewName: "vAdvertisementCreate", id: "btnCancel", label: "Cancelar", buttonType: "btn btn-secondary", onClickFunction: "Cancel", type: "button")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/assets/js/demo1/pages/crud/forms/widgets/autosize.js"></script>

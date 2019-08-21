@@ -1,0 +1,43 @@
+﻿#btnubicacion {
+    width: 273px;
+    height: 38px;
+}
+
+#divinner {
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#carouselExampleSlidesOnly {
+    width: 450px;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(231, 76, 60,0.9);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+
+#divinner:hover .overlay {
+    height: 100%;
+    z-index: 3000;
+}
+
+.text {
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}

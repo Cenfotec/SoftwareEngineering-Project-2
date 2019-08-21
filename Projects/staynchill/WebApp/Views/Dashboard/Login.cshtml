@@ -1,0 +1,57 @@
+﻿@using WebApp.Helpers;
+@{
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/assets/vendors/global/vendors.bundle.js"></script>
+<script src="~/Scripts/Views/ControlActions.js"></script>
+<script src="~/Scripts/Views/Login/vLogin.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+
+<div class="kt-login__container">
+    <div class="kt-login__logo">
+        <a href="">
+            <img src="~/Images/StaynChill-Logo.png" style="width: 350px;height: auto;">
+        </a>
+    </div>
+    <div class="kt-login__signin">
+        <div class="kt-login__head">
+            <h3 class="kt-login__title">Iniciar sesión</h3>
+        </div>
+        @* Login Form *@
+
+        <form class="kt-form" method="POST" id="loginForm">
+            @Html.CtrlInputLogin(id: "txtEmail", type: "text", placeholder: "Correo electrónico", autocomplete: "off", validation: "Email")
+            @Html.CtrlInputLogin(id: "txtPassword", type: "password", placeholder: "Contraseña", autocomplete: "off", validation: "Password")
+
+            <div class="row kt-login__extra">
+                <div class="col kt-align-right">
+                    <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">Recuperar contraseña</a>
+                </div>
+            </div>
+            <div class="kt-login__actions">
+                @Html.CtrlLoginButton(id: "loginButton", viewName: "vLogin", value: "Login", label: "Ingresar", clickFunction: "Login")
+            </div>
+        </form>
+
+    </div>
+
+    <div class="kt-login__forgot">
+        <div class="kt-login__head">
+            <h3 class="kt-login__title">Recuperar contraseña</h3>
+            <div class="kt-login__desc">Ingrese su correo para restablecer la contraseña:</div>
+        </div>
+        <form class="kt-form" action="">
+            <div class="input-group">
+                <input id="txtRecoverEmail" class="form-control" type="text" placeholder="Email" name="email" autocomplete="off">
+            </div>
+            <div class="kt-login__actions">
+                @Html.CtrlLoginButton(id: "kt_login_forgot_submit", viewName: "vLogin", value: "Recuperar Contraseña", label: "Solicitar", clickFunction: "forgotPassword")
+                <button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*id="kt_login_signin_submit"*@

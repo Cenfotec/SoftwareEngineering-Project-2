@@ -1,0 +1,5 @@
+D:\Azure DevOps\staynchill\dev\staynchill\ClientSide-EntitiesModel\bin\Debug\ClientSide-EntitiesModel.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ClientSide-EntitiesModel\bin\Debug\ClientSide-EntitiesModel.pdb
+D:\Azure DevOps\staynchill\dev\staynchill\ClientSide-EntitiesModel\obj\Debug\ClientSide-EntitiesModel.csproj.CoreCompileInputs.cache
+D:\Azure DevOps\staynchill\dev\staynchill\ClientSide-EntitiesModel\obj\Debug\ClientSide-EntitiesModel.dll
+D:\Azure DevOps\staynchill\dev\staynchill\ClientSide-EntitiesModel\obj\Debug\ClientSide-EntitiesModel.pdb

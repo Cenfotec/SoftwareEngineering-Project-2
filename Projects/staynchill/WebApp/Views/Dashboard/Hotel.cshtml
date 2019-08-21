@@ -1,0 +1,170 @@
+﻿@using WebApp.Helpers;
+@{
+    /**/
+
+    ViewBag.Title = "Stay n'Chill | Hotel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+<link href="~/Content/Hotel/DashboardListServices.css" rel="stylesheet" />
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDVs9sDZEgrB57DDIfNck8ngmTxNFuD1Fw'></script>
+<script src="~/Scripts/locationpickerjquery2.js"></script>
+<script src="~/Scripts/Views/Dashboard/ListHotel.js"></script>
+
+@* Form body *@
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <div class="kt-widget kt-widget--user-profile-3">
+            <div class="kt-widget__top">
+                <div class="kt-widget__media kt-hidden-">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="carousel" style="height: 245px; width: 325px;">
+                        </div>
+                    </div>
+                </div>
+                @Html.CtrlInputHidden(id: "txtLat", type: "hidden", label: "", columnDataName: "Latitude")
+                @Html.CtrlInputHidden(id: "txtLng", type: "hidden", label: "", columnDataName: "Longitude")
+                <div class="kt-widget__content">
+
+                    <div class="kt-widget__head">
+                        <a class="kt-widget__username" id="nombreHotel">
+                            @* Aquí va el nombre del hotel *@
+                        </a>
+                        <div class="kt-widget__action">
+                            @* Aqui va un botón de cambiar estado *@
+
+                            @Html.CtrlMap(viewName: "vRequestIndex", id: "mapaHotel", latitud: "", longitud: "")
+                            &nbsp;
+                            <a class="btn btn-label-success btn-sm btn-upper" href="/dashboard/hotel/edit">Modificar</a>
+                            &nbsp;
+                            <button type="button" class="btn btn-label-danger btn-sm btn-upper" id="btnEliminar">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="kt-widget__subhead">
+
+                        <a id="email">
+                            @* Aquí va el correo del hotel *@
+                        </a>
+
+                        <a id="phone">
+                            @* Aquí va el teléfono del hotel *@
+                        </a>
+
+                        <a id="stars">
+                            @* Aquí va el número de estrellas del hotel *@
+                        </a>
+
+                    </div>
+
+                    <div class="kt-widget__info" id="descripcion">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+                    <div class="kt-widget__info" id="cedula">
+                        @*Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+                    <div class="kt-widget__info" id="nombreEmpresa">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+                    <div class="kt-widget__info" id="nombreCadena">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+                    <div class="kt-widget__info" id="direccion">
+                        @* Aquí va la descripción, la cédula jurídica, el nombre de empresa y de cadena, serparados por un break* *@
+                    </div>
+                    <br>
+
+                    <div class="kt-widget__action">
+                        <a href="/dashboard/service/create" class="btn btn-label-primary btn-bold">
+                            Añadir servicio
+                        </a>
+                        &nbsp;
+                        <a href="/dashboard/rooms/create" class="btn btn-label-success btn-bold">
+                            Añadir habitación
+                        </a>
+                        &nbsp;
+                        <a href="/dashboard/roomtypes/create" class="btn btn-label-danger btn-bold">
+                            Añadir tipo habitación
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="kt-portlet ">
+                <div class="kt-portlet__body">
+                    <div class="kt-widget kt-widget--user-profile-3">
+                        <div class="kt-widget__bottom">
+                            <div class="kt-widget__item">
+                                <div class="kt-widget__icon">
+                                    <i class="flaticon-piggy-bank"></i>
+                                </div>
+                                <div class="kt-widget__details">
+                                    <span class="kt-widget__title">Total de reservaciones</span>
+                                    <span class="kt-widget__value" id="txtTotalresbymonth"></span>
+                                </div>
+                            </div>
+                            <div class="kt-widget__item">
+                                <div class="kt-widget__icon">
+                                    <i class="flaticon-confetti"></i>
+                                </div>
+                                <div class="kt-widget__details">
+                                    <span class="kt-widget__title">Promedio ganancias del hotel</span>
+                                    <span id="txtTotalIncome" class="kt-widget__value"></span>
+                                </div>
+                            </div>
+                            <div class="kt-widget__item">
+                                <div class="kt-widget__icon">
+                                    <i class="flaticon-pie-chart"></i>
+                                </div>
+                                <div class="kt-widget__details">
+                                    <span class="kt-widget__title">Ganancias actual del hotel</span>
+                                    <span id="txtAnualAverageIncome" class="kt-widget__value"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <!--begin:: Widgets/Order Statistics-->
+                    <div class="kt-portlet kt-portlet--height-fluid">
+                        <div class="kt-portlet__body kt-portlet__body--fluid">
+                            <div class="kt-widget12">
+                                <div id="chartInfo" class="kt-widget12__content">
+                                    <div class="kt-widget12__item">
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__desc">Fecha de consulta del estado financiero</span>
+                                            <span id="txtCurrentDate" class="kt-widget12__value">Agosto 07,2019</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end:: Widgets/Order Statistics-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <h2>Servicios</h2>
+        <div class="kt-widget__bottom">
+            <div id="parentServicesCards" class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+            </div>
+        </div>
+    </div>
+</div>

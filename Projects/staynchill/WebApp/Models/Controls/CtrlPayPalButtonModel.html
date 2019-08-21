@@ -1,0 +1,184 @@
+﻿<div id="-#DivId-"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=-#ClientId-&currency=-#Currency-"></script>
+
+<script>
+
+
+    var PayPalClientSideLogic = function () {
+        var ctrlActions = new ControlActions()
+        var service = 'paymentTransaction'
+
+        var createOrder = function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '-#AmountValue-'
+                    }
+                }]
+            });
+        }
+
+        var postPaymentTransaction = details => {
+            console.log("details: ", details)
+
+            var membershipPayment = JSON.parse(localStorage.getItem('_membershipPayment'));
+            hotelPaymentInfo = {
+                commission: membershipPayment.commission,
+                email: membershipPayment.email
+            }
+
+            var CommissionTotal = (parseFloat('-#AmountValue-') / 100) * hotelPaymentInfo.commission;
+            var TotalPrice = parseFloat('-#AmountValue-') - CommissionTotal;
+
+            var paymentTransaction = {
+                OrderId: details.id,
+                PayerId: details.payer.payer_id,
+                TotalAmount: details.purchase_units[0] ? details.purchase_units[0].amount.value : "0",
+                CommissionPercentage: hotelPaymentInfo.commission,
+                CommissionTotal,
+                BasePrice: TotalPrice + CommissionTotal,
+                PaypalEmail: hotelPaymentInfo.email,
+                FkHotel: parseInt(location.href.split('?')[1].split('&')[0].split('=')[1]),
+                Category: 'membresia'
+            }
+
+            var jqxhr = ctrlActions.GetMethodPostToAPI(service, paymentTransaction)
+                .done(response => {
+                    var ctrlActions = new ControlActions();
+                    ctrlActions.ShowMessage('I', response.Message);
+                })
+                .fail(response => {
+                    var data = response.responseJSON;
+                    var ctrlActions = new ControlActions();
+                    ctrlActions.ShowMessage('E', data.ExceptionMessage);
+                });
+
+            return jqxhr
+
+
+
+
+        }
+
+        var onApprove = (data, actions) => {
+            var logFunc = actions.order.capture();
+            console.log(logFunc)
+            logFunc.then( details => {
+                var jqxhr = postPaymentTransaction(details)
+                jqxhr.done((res) => {
+                       
+                    console.log("res: ", res)
+                    //alert('-#TransactionCompletedByMessage-' + details.payer.name.given_name + '!');                   
+                })
+                return jqxhr
+            }).then((xxx) => {
+                let url = location.href;
+                let FK_HOTEL = parseInt(url.split('?')[1].split('&')[0].split('=')[1]);
+                var data = {};
+
+                if (url.includes('/dashboard/')) {
+
+                    // GET CORREO
+                    var getCorreo = ctrlActions.GetMethodPostToAPI('commission/IsAdminHotelRegistered', { Id: FK_HOTEL });
+                    getCorreo.done(res => {
+                        console.log(res);
+
+                        data = {};
+                        var method = ctrlActions.GetMethodPostToAPI('hotel/AsociarHotelAdmin', { Id: FK_HOTEL, Email: res.Data.Percentage });
+                        method.done(resHotel => {
+
+                            // Send Email
+                            var SendFacturaPost = ctrlActions.GetMethodPostToAPI('hotel/SendMembershipEmail', { Id: FK_HOTEL, Email: res.Data.Percentage, DailySales: TotalPrice });
+                            SendFacturaPost.done(res => {
+
+                                console.log("Registro exitoso");
+                                javascript: location.href = '/dashboard';
+
+                            });
+                        })
+                    });
+                }
+                else
+                {
+                    var rol = "Administrador de hotel";
+                    var estado = "Habilitado";
+
+                    // Image
+                    let imagenUrl = $('#imageConatiner')[0].childNodes[0].src;
+                    let urlArray = imagenUrl.split('/');
+                    imagenUrl = urlArray[6];
+
+                    var keyImg = imagenUrl;
+                    data = {};
+                    $('#' + 'kt_form' + ' *').filter(':input').each(function (input) {
+                        var columnDataName = $(this).attr("ColumnDataName");
+                        if (columnDataName != "CContrasenna") {
+                            data[columnDataName] = this.value;
+                        }
+                    });
+                    data.Rol = rol;
+                    data.Estado = estado;
+                    data.Imagen = keyImg
+
+                    // Asignar el ID del Hotel a Codigo
+                    data.codigo = FK_HOTEL;
+
+                    // Hace el post al create
+                    var method = ctrlActions.GetMethodPostToAPI('user', data);
+                    method.done(res => {
+
+                        var TotalPrice = parseFloat('-#AmountValue-');
+
+                        // Send Email
+                        var SendFacturaPost = ctrlActions.GetMethodPostToAPI('hotel/SendMembershipEmail', { Id: FK_HOTEL, Email: data.Correo, DailySales: TotalPrice });
+                        SendFacturaPost.done(res => {
+
+                            console.log("Registro exitoso");
+                            javascript: location.href = '/dashboard/login';
+
+                        });
+
+                        
+                    })
+                }
+
+
+
+            })
+
+            //.then(yet => {
+            //    console.log(yet)
+            //    javascript: location.href = '/dashboard/login'
+            //})
+           
+
+            console.log("returning logFunc", logFunc)
+            return logFunc
+                
+        }
+        var logic = {
+            // Set up the transaction
+            createOrder,
+
+            // Finalize the transaction
+            onApprove
+        }
+        return {
+            getLogic: () => logic
+        }
+    }();
+
+    var methodHotelCommissionGet = new ControlActions().GetMethodGetToApi('hotel/getCommission?hotel=' + location.href.split('?')[1].split('&')[0].split('=')[1]);
+    methodHotelCommissionGet.done(res => {
+        hotelPaymentInfo = {
+            commission: res.Data.Commission,
+            email: res.Data.HotelEmail
+        }
+        localStorage.setItem('_membershipPayment', JSON.stringify(hotelPaymentInfo));
+
+        paypal.Buttons(PayPalClientSideLogic.getLogic()).render('#-#DivId-');
+    });
+
+    
+</script>

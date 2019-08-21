@@ -1,0 +1,27 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+@{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<script src="~/Scripts/Views/User/vUserIndex.js"></script>
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Usuarios de Stay n'Chill
+            </h3>
+        </div>
+    </div>
+
+    <div class="kt-portlet__body">
+        @Html.CtrlTable(viewName: "vUserIndex", id: "TBL_USUARIOS", title: "Administradores de Stay n'Chill",
+    columnsTitle: "Cédula,Nombre,Apellido,Correo,Teléfono,Provincia,Estado,Rol",
+    ColumnsDataName: "Cedula,Nombre,Apellido,Correo,Telefono,Provincia,Estado,Rol",
+    onSelectFunction: "BindFields", colorHeader:"red", dataId: "Id")
+    </div>
+</div>

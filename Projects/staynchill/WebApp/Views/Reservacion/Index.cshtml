@@ -1,0 +1,31 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Mis Reservaciones";
+}
+
+@{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<script src="~/Scripts/Views/Reservacion/vReservacionIndex.js"></script>
+
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Mis reservas
+            </h3>
+        </div>
+    </div>
+
+
+<form class="kt_form_1" id="kt_form_1" action="Create">
+    <div class="kt-portlet__body">
+@Html.CtrlTable(viewName: "vReservacionIndex", id: "TBL_RESERVAS", title: "Mis reservas",
+    columnsTitle: "Usuario,Hotel,Número de habitación,Fecha de inicio,Fecha de fin,Precio,Estado", 
+    ColumnsDataName: "User,Hotel,RoomNum,BeginDate,EndDate,Price,Status", 
+    onSelectFunction: "BindFields", colorHeader:"red", dataId: "Id")
+    </div>
+</form>
+</div>

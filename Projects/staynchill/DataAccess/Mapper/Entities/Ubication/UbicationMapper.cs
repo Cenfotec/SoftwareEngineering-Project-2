@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccess.Mapper
+{
+    public class UbicationMapper : EntityMapperGeneric
+    {
+        public UbicationMapper() : base(dB_PR_BASE_NAME: "UBICATION") { }
+    }
+}

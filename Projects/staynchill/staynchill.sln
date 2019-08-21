@@ -1,0 +1,111 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{D2629F57-15FD-4339-8A38-467E2E940625}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAPI", "CoreAPI\CoreAPI.csproj", "{5D230174-5E98-48F1-BFAE-F5F4D7FA15FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities-POJO", "Entities-POJO\Entities-POJO.csproj", "{DE93E209-BA00-452A-9D39-DE4231F6FC7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{CFDDFEB2-804F-4E78-801A-0DC403227BED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0C1DB73-7750-4E60-979E-575C5E450F64}"
+	ProjectSection(SolutionItems) = preProject
+		.tfignore = .tfignore
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{9811BA8C-FE45-41E4-997B-67B2C3A479EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Tests", "WebAPI.Tests\WebAPI.Tests.csproj", "{49983972-EBEE-4DE6-98BA-CE0CD5E576C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{0C2EEF24-4513-46A9-806E-E8DAE476149B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramChatBot", "TelegramChatBot\TelegramChatBot.csproj", "{EEDA4462-0007-4201-B13C-7EC94BB4F99B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScannerQR", "ScannerQR\ScannerQR.csproj", "{84B23AD5-9A30-491E-8B51-2DCF20FE9248}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2629F57-15FD-4339-8A38-467E2E940625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2629F57-15FD-4339-8A38-467E2E940625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2629F57-15FD-4339-8A38-467E2E940625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2629F57-15FD-4339-8A38-467E2E940625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D230174-5E98-48F1-BFAE-F5F4D7FA15FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D230174-5E98-48F1-BFAE-F5F4D7FA15FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D230174-5E98-48F1-BFAE-F5F4D7FA15FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D230174-5E98-48F1-BFAE-F5F4D7FA15FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE93E209-BA00-452A-9D39-DE4231F6FC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE93E209-BA00-452A-9D39-DE4231F6FC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE93E209-BA00-452A-9D39-DE4231F6FC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE93E209-BA00-452A-9D39-DE4231F6FC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFDDFEB2-804F-4E78-801A-0DC403227BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDDFEB2-804F-4E78-801A-0DC403227BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDDFEB2-804F-4E78-801A-0DC403227BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDDFEB2-804F-4E78-801A-0DC403227BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9811BA8C-FE45-41E4-997B-67B2C3A479EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9811BA8C-FE45-41E4-997B-67B2C3A479EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9811BA8C-FE45-41E4-997B-67B2C3A479EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9811BA8C-FE45-41E4-997B-67B2C3A479EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49983972-EBEE-4DE6-98BA-CE0CD5E576C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49983972-EBEE-4DE6-98BA-CE0CD5E576C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49983972-EBEE-4DE6-98BA-CE0CD5E576C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49983972-EBEE-4DE6-98BA-CE0CD5E576C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2EEF24-4513-46A9-806E-E8DAE476149B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C2EEF24-4513-46A9-806E-E8DAE476149B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C2EEF24-4513-46A9-806E-E8DAE476149B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C2EEF24-4513-46A9-806E-E8DAE476149B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B23AD5-9A30-491E-8B51-2DCF20FE9248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B23AD5-9A30-491E-8B51-2DCF20FE9248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B23AD5-9A30-491E-8B51-2DCF20FE9248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B23AD5-9A30-491E-8B51-2DCF20FE9248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDA4462-0007-4201-B13C-7EC94BB4F99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDA4462-0007-4201-B13C-7EC94BB4F99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDA4462-0007-4201-B13C-7EC94BB4F99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDA4462-0007-4201-B13C-7EC94BB4F99B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {549D31E6-7BD0-4886-9393-91C6CC15E52A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/qubits-proyecto2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DataAccess\\DataAccess.csproj
+		SccProjectName1 = DataAccess
+		SccLocalPath1 = DataAccess
+		SccProjectUniqueName2 = CoreAPI\\CoreAPI.csproj
+		SccProjectName2 = CoreAPI
+		SccLocalPath2 = CoreAPI
+		SccProjectUniqueName3 = Entities-POJO\\Entities-POJO.csproj
+		SccProjectName3 = Entities-POJO
+		SccLocalPath3 = Entities-POJO
+		SccProjectUniqueName4 = WebAPI\\WebAPI.csproj
+		SccProjectName4 = WebAPI
+		SccLocalPath4 = WebAPI
+		SccProjectUniqueName5 = WebApp\\WebApp.csproj
+		SccProjectName5 = WebApp
+		SccLocalPath5 = WebApp
+		SccProjectUniqueName6 = WebAPI.Tests\\WebAPI.Tests.csproj
+		SccProjectName6 = WebAPI.Tests
+		SccLocalPath6 = WebAPI.Tests
+		SccProjectUniqueName7 = Exceptions\\Exceptions.csproj
+		SccProjectName7 = Exceptions
+		SccLocalPath7 = Exceptions
+		SccProjectUniqueName8 = ScannerQR\\ScannerQR.csproj
+		SccProjectName8 = ScannerQR
+		SccLocalPath8 = ScannerQR
+		SccProjectUniqueName8 = TelegramChatBot\\TelegramChatBot.csproj
+		SccProjectName8 = TelegramChatBot
+		SccLocalPath8 = TelegramChatBot
+	EndGlobalSection
+EndGlobal

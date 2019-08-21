@@ -1,0 +1,89 @@
+﻿<script src="https://www.paypal.com/sdk/js?client-id=-#ClientId-&currency=-#Currency-"></script>
+
+<script>
+    
+    var PayPalClientSideLogicV3 = function () {
+        var divId = "-#DivId-"
+        var ctrlActions = new ControlActions()
+        var service = 'paymentTransactionv2'
+
+        var createOrder = function (data, actions) {
+            //var cartDats = JSON.parse(localStorage.getItem('_reservationSearchData'));
+            var cartData = {
+                basePrice: 25.00,
+                commissionPercentage: 15.0
+            } 
+
+            var newOrder = {
+                amount: {
+                    value: String(cartData.basePrice)
+                }
+            }
+            return actions.order.create({
+                purchase_units: [newOrder]
+            });
+        }
+
+        var postPaymentTransaction = details => {
+
+            console.log("details: ", details);
+            var cartData = {
+                basePrice: 25.00,
+                commissionPercentage: 15.0
+            }
+
+            var currenthotel = JSON.parse(localStorage.getItem('hotel'));
+           
+            var CommissionTotal = (cartData.basePrice / 100) * cartData.commissionPercentage;
+            
+            var paymentTransactionV3 = {
+                OrderId: details.id,
+                PayerId: details.payer.payer_id,
+                TotalAmount: details.purchase_units[0] ? details.purchase_units[0].amount.value : "0",
+                CommissionPercentage: cartData.commissionPercentage,
+                CommissionTotal,
+                BasePrice: TotalPrice + CommissionTotal,
+                PaypalEmail: currenthotel.HotelEmail,
+                FkHotel: currenthotel.Id
+
+            }
+
+            var jqxhr = ctrlActions.GetMethodPostToAPI(service, paymentTransactionV3)
+
+            return jqxhr
+        }
+
+        var onApprove = (data, actions) => {
+            var logFunc = actions.order.capture();
+
+            logFunc.then(details => {
+
+                var jqxhr = postPaymentTransaction(details)
+                    .done((res) => {
+                                             
+                    })
+
+                return jqxhr
+            }).then((postTransactionResponse) => {
+
+            })
+
+            return logFunc
+
+        }
+        var logic = {
+            // Set up the transaction
+            createOrder,
+
+            // Finalize the transaction
+            onApprove
+        }
+        return {
+            getLogic: () => logic
+        }
+    }();
+    //var renderPayPalButton = function() {
+    //    paypal.Buttons(PayPalClientSideLogicV3.getLogic()).render('#-#DivId-');
+    //}
+    
+</script>

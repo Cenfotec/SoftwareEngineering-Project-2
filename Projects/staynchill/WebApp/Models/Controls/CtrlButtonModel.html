@@ -1,0 +1,14 @@
+﻿<script>
+    $(document).ready(function () {
+        $("#-#Id-").click(function () {
+            var view = new -#ViewName-();
+            var funcName = "-#FunctionName-";
+            if (view != undefined && funcName !== "") {
+                var func = view[funcName];
+                if (func)
+                    func()
+            }
+        });
+});
+</script>
+<button type="-#Type-" id="-#Id-" class="btn -#ButtonType-">-#Label-</button>

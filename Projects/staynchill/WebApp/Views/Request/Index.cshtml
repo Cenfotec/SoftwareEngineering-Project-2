@@ -1,0 +1,101 @@
+﻿@using WebApp.Helpers;
+@{
+    ViewBag.Title = "Stay n'Chill | Solicitudes";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/Views/Membership/vMembershipCreate.js"></script>
+<script src="~/Scripts/Validation/FormsValidation.js"></script>
+<script src="~/Scripts/Validation/messages_es.js"></script>
+<script src="~/Scripts/Views/Request/vRequestsIndex.js"></script>
+<!--begin::Portlet-->
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Hotels Requests
+            </h3>
+        </div>
+    </div>
+
+    <div class="kt-portlet__body">
+        @Html.CtrlTable(
+            viewName: "vRequests",
+            id: "kt_table_1",
+            title: "Hotel Requests List",
+            columnsTitle: "Nombre de hotel,Fecha,Ventas por día,Ventas por mes,Email,Acciones",
+            ColumnsDataName: "HotelName,Date,DailySales,MonthlySales,Email,Actions",
+            onSelectFunction: "BindFields",
+            colorHeader:"red",
+            dataId:"Id"
+        )
+    </div>
+</div>
+@* Form body *@
+<form class="kt_form_1" id="kt_form_1" action="Create">
+    <div class="kt-portlet__body">
+        @* Form controls *@
+        @Html.CtrlInputHidden(id: "txtId", type: "hidden", label: "", columnDataName: "Id")
+        @Html.CtrlInputHidden(id: "txtHotel", type: "hidden", label: "", columnDataName: "Hotel")
+        @Html.CtrlInputHidden(id: "txtHotelName", type: "hidden", label: "", columnDataName: "HotelName")
+        @Html.CtrlInputHidden(id: "txtDate", type: "hidden", label: "", columnDataName: "Date")
+        @Html.CtrlInputHidden(id: "txtDailySales", type: "hidden", label: "", columnDataName: "DailySales")
+        @Html.CtrlInputHidden(id: "txtMonthlySales", type: "hidden", label: "", columnDataName: "MonthlySales")
+        @Html.CtrlInputHidden(id: "txtState", type: "hidden", label: "", columnDataName: "State")
+        @Html.CtrlInputHidden(id: "txtEmail", type: "hidden", label: "", columnDataName: "Email")
+    </div>
+</form>
+
+<div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Definir membresía</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="kt_form" id="CreateMembership" method="POST">
+                <div class="modal-body">
+                    @* Form controls *@
+                    @Html.CtrlInputIcon(
+                        id: "txtPrice",
+                        type: "number",
+                        label: "Precio *",
+                        placeHolder: "0.00",
+                        columnDataName: "Price",
+                        ariaLabel: "Amount (to the nearest dollar)",
+                        prepend: "$"
+                    )
+                    @Html.CtrlInput(
+                       id: "txtNumberMonths",
+                       type: "number",
+                       label: "Cantidad de meses *",
+                       placeHolder: "Ingrese cuantos meses es vigente la membresía",
+                       columnDataName: "NumberMonths"
+                    )
+                    @Html.CtrlInput(
+                       id: "txtCommission",
+                       type: "number",
+                       label: "Porcentaje de comisión *",
+                       placeHolder: "Ingrese el porcentaje de comisión de ganancias",
+                       columnDataName: "Commission"
+                    )
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    @Html.CtrlButton(
+                        viewName: "vMembershipCreate",
+                        id: "btnCreate",
+                        label: "Aceptar",
+                        onClickFunction: "",
+                        buttonType: "btn-primary",
+                        type: "submit"
+                    )
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
